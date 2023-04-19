@@ -1,0 +1,25 @@
+<head th:replace="~{base :: head}">
+        <title>Novo Projeto</title>
+</head>
+    <body>
+        <div th:replace="~{base :: logo}"></div>
+
+        <div class="container">
+            <div th:replace="~{base :: titulo('Novo Projeto')}"></div>
+
+            <div class="card">
+                <form th:object="${requisicaoNovoProjeto}" class="card-body" action="/projeto/novo" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label" for="nomeProjeto">Projeto</label>
+                        <input th:field="*{nomeProjeto}" th:errorclass="is-invalid" class="form-control" type="text" placeholder="nome do projeto"/>
+                        <small>Informe o nome do projeto.</small>
+                        <div class="invalid-feedback" th:errors="*{nomeProjeto}" >
+                            Erros do nome do Projeto
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
