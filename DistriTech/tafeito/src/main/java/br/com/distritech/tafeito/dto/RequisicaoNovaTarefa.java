@@ -2,19 +2,18 @@ package br.com.distritech.tafeito.dto;
 
 import br.com.distritech.tafeito.model.StatusTarefa;
 import br.com.distritech.tafeito.model.Tarefa;
-import org.springframework.format.annotation.DateTimeFormat;
+import jakarta.validation.constraints.NotBlank;
 
-import javax.validation.constraints.NotBlank;
-
+import org.springframework.validation.annotation.Validated;
 import java.time.LocalDate;
 
+@Validated
 public class RequisicaoNovaTarefa {
 
     @NotBlank
     private String nomeTarefa;
 
-    @NotBlank
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+
     private LocalDate dataConclusaoTarefa;
 
     @NotBlank

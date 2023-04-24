@@ -13,7 +13,7 @@
                         <label class="form-label" for="nomeProjeto">Projeto</label>
                         <input th:field="*{nomeProjeto}" th:errorclass="is-invalid" class="form-control" type="text" placeholder="nome do projeto"/>
                         <small>Informe o nome do projeto.</small>
-                        <div class="invalid-feedback" th:errors="*{nomeProjeto}" >
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('nomeProjeto')}" th:errors="*{nomeProjeto}" >
                             Erros do nome do Projeto
                         </div>
                     </div>

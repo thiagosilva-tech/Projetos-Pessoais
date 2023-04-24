@@ -13,15 +13,15 @@
                         <label class="form-label" for="nomeTarefa">Tarefa</label>
                         <input th:field="*{nomeTarefa}" th:errorclass="is-invalid" class="form-control" type="text" placeholder="nome da tarefa"/>
                         <small>Informe o nome da tarefa.</small>
-                        <div class="invalid-feedback" th:errors="*{nomeTarefa}" >
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('nomeTarefa')}" th:errors="*{nomeTarefa}" >
                             Erros do nome da tarefa
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="dataConclusaoTarefa">Data para conclusão</label>
-                        <input th:field="*{dataConclusaoTarefa}" th:errorclass="is-invalid" class="form-control" type="text" placeholder="dd/mm/aaaa"/>
+                        <input th:field="*{dataConclusaoTarefa}" th:errorclass="is-invalid" class="form-control" type="date"/>
                         <small>Informe a data para conclusão da tarefa.</small>
-                        <div class="invalid-feedback" th:errors="*{dataConclusaoTarefa}">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('dataConclusaoTarefa')}" th:errors="*{dataConclusaoTarefa}">
                             Erros da data de conclução da tarefa
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                         <label class="form-label" for="descricaoTarefa">Descrição</label>
                         <textarea th:field="*{descricaoTarefa}" th:errorclass="is-invalid" class="form-control" placeholder=" descrição da tarefa"></textarea>
                         <small>Informe uma descrição da tarefa.</small>
-                        <div class="invalid-feedback" th:errors="*{descricaoTarefa}">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('descricaoTarefa')}" th:errors="*{descricaoTarefa}">
                             Erros da descrição da tarefa
                         </div>
                     </div>

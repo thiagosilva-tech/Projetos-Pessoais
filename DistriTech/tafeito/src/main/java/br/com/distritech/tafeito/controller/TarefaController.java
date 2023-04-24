@@ -3,11 +3,10 @@ package br.com.distritech.tafeito.controller;
 import br.com.distritech.tafeito.dto.RequisicaoNovaTarefa;
 import br.com.distritech.tafeito.model.Tarefa;
 import br.com.distritech.tafeito.repository.TarefaRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,12 +25,12 @@ public class TarefaController {
     }
 
     @PostMapping("novo")
-    public String novo(@Valid RequisicaoNovaTarefa requisicao, Errors result){
+    public String novo(@Valid RequisicaoNovaTarefa requisicao, BindingResult result){
         if(result.hasErrors()){
             return "/tarefa/formulario";
         }
         Tarefa tarefa = requisicao.toTarefa();
         tarefaRepository.save(tarefa);
-        return "/home";
+        return "redirect:/home";
     }
 }

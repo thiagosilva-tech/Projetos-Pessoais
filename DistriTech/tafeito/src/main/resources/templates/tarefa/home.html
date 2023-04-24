@@ -1,5 +1,5 @@
 <div th:fragment="tarefa">
-    <div>
+    <div class="card">
         <div class="card-header text-center">
             <div class="card-body">
                 <div class="row g-5">
@@ -12,26 +12,27 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div th:each="tarefa : ${tarefas}" class="col-10">
+        <div class="card">
+            <div th:each="tarefa : ${tarefas}">
                 <div class="card text-center mb-2">
-                    <div class="row g-5">
-                        <div th:text="${tarefa.nomeTarefa}" class="col p-3">Nome da tarefa</div>
-                        <div th:text="${tarefa.descricaoTarefa}"class="col p-3">Descrição</div>
+                    <div class="card-body">
+                        <div class="row g-5">
+                            <div th:text="${tarefa.nomeTarefa}" class="col p-4">Nome da tarefa</div>
+                            <div th:text="${tarefa.descricaoTarefa}"class="col p-4">Descrição</div>
 
-                        <div th:text="${tarefa.dataCriacaoTarefa}" class="col p-3">17/04/2023</div>
+                            <div th:text="${tarefa.dataCriacaoTarefa}" class="col p-4">17/04/2023</div>
 
-                        <th:block th:switch="${tarefa.status.name()}">
-                            <div th:case="'EMDIA'" th:text="${tarefa.dataConclusaoTarefa}" class="alert alert-success col p-3" role="alert"><span>17/12/2023</span></div>
-                            <div th:case="'ATRASADO'" th:text="${tarefa.dataConclusaoTarefa}" class="alert alert-danger col p-3" role="alert"><span>17/12/2023</span></div>
-                        </th:block>
+                            <th:block th:switch="${tarefa.status.name()}">
+                                <div th:case="'EMDIA'" th:text="${tarefa.dataConclusaoTarefa}" class="alert alert-success col p-4" role="alert"><span>17/12/2023</span></div>
+                                <div th:case="'ATRASADO'" th:text="${tarefa.dataConclusaoTarefa}" class="alert alert-danger col p-4" role="alert"><span>17/12/2023</span></div>
+                            </th:block>
 
-                        <div class="col">
-                            <button type="button" class="btn btn-primary p-3">Editar</i></button>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-danger p-3">Excluir</i></button>
-
+                            <div class="col">
+                                <a href="/tarefa/excluir"><button type="button" class="btn btn-primary p-3">Editar</i></button></a>
+                            </div>
+                            <div class="col">
+                                <a href="/tarefa/editar"><button type="button" class="btn btn-danger p-3">Excluir</i></button></a>
+                            </div>
                         </div>
                     </div>
                 </div>

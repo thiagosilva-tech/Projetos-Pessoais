@@ -1,12 +1,17 @@
 <div th:fragment="projeto" class="container">
     <div class="card">
-        <div class="card-header">
-            Projetos
+        <div class="card-header text-center">
+            <div class="card-body">
+                <div class="row g-5">
+                    <div class="col-12 p-3">Projetos</div>
+                </div>
+            </div>
         </div>
+
         <div class="card-body mr-0" th:each="projeto : ${projetos}">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item" th:text="${projeto.nomeProjeto}">Nome do projeto</li>
-            </ul>
+            <div class="list-group">
+                <a href="" class="list-group-item list-group-item-action active" th:text="${projeto.nomeProjeto}">Nome do projeto</a>
+            </div>
         </div>
     </div>
 </div>
