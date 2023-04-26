@@ -13,7 +13,6 @@ public class RequisicaoNovaTarefa {
     @NotBlank
     private String nomeTarefa;
 
-
     private LocalDate dataConclusaoTarefa;
 
     @NotBlank

@@ -28,10 +28,12 @@
                             </th:block>
 
                             <div class="col">
-                                <a href="/tarefa/excluir"><button type="button" class="btn btn-primary p-3">Editar</i></button></a>
+                                <a href="/tarefa/editar"><button type="button" class="btn btn-primary p-3">Editar</i></button></a>
                             </div>
                             <div class="col">
-                                <a href="/tarefa/editar"><button type="button" class="btn btn-danger p-3">Excluir</i></button></a>
+                                <form th:action="@{tarefa/excluir/{id}(id=${tarefa.id})}" th:method="delete">
+                                    <button type="submit" class="btn btn-danger p-3">Excluir</button>
+                                </form>
                             </div>
                         </div>
                     </div>

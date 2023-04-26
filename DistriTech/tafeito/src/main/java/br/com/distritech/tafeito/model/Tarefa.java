@@ -10,6 +10,10 @@ public class Tarefa{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "projeto_id")
+    private Projeto projeto;
+
     private String nomeTarefa;
     private String descricaoTarefa;
     private LocalDate dataCriacaoTarefa = LocalDate.now();
@@ -17,6 +21,10 @@ public class Tarefa{
 
     @Enumerated(EnumType.STRING)
     private StatusTarefa status;
+
+    public Long getId() {
+        return id;
+    }
 
     public String getNomeTarefa() {
         return nomeTarefa;
@@ -56,5 +64,13 @@ public class Tarefa{
 
     public void setStatus(StatusTarefa status) {
         this.status = status;
+    }
+
+    public Projeto getProjeto(){
+        return projeto;
+    }
+
+    public void setProjeto(Projeto projeto){
+        this.projeto = projeto;
     }
 }

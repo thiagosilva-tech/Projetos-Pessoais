@@ -7,9 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("tarefa")
@@ -27,10 +25,17 @@ public class TarefaController {
     @PostMapping("novo")
     public String novo(@Valid RequisicaoNovaTarefa requisicao, BindingResult result){
         if(result.hasErrors()){
-            return "/tarefa/formulario";
+            return "tarefa/formulario";
         }
         Tarefa tarefa = requisicao.toTarefa();
         tarefaRepository.save(tarefa);
+        return "redirect:/home";
+    }
+
+    @DeleteMapping("excluir/{id}")
+    public String excluir(@PathVariable("id") Long id){
+        Tarefa tarefa = tarefaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido: " + id));
+        tarefaRepository.delete(tarefa);
         return "redirect:/home";
     }
 }
