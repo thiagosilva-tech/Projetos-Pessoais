@@ -3,14 +3,14 @@ package br.com.distritech.tafeito.dto;
 import br.com.distritech.tafeito.model.StatusTarefa;
 import br.com.distritech.tafeito.model.Tarefa;
 import jakarta.validation.constraints.NotBlank;
-
 import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
+
 import java.time.LocalDate;
 
 @Validated
-public class RequisicaoNovaTarefa {
+public class RequisicaoEditarTarefa {
 
     @NotBlank
     private String nomeTarefa;
@@ -60,4 +60,5 @@ public class RequisicaoNovaTarefa {
         }
         return tarefa;
     }
+
 }

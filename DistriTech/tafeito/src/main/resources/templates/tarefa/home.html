@@ -28,10 +28,13 @@
                             </th:block>
 
                             <div class="col">
-                                <a href="/tarefa/editar"><button type="button" class="btn btn-primary p-3">Editar</i></button></a>
+                                <form th:action="@{tarefa/formularioEdicao/{id}(id=${tarefa.id})}" th:method="get">
+                                    <button type="submit" class="btn btn-primary p-3">Editar</button>
+                                </form>
                             </div>
                             <div class="col">
                                 <form th:action="@{tarefa/excluir/{id}(id=${tarefa.id})}" th:method="delete">
+                                    <input type="hidden" name="_method" value="delete">
                                     <button type="submit" class="btn btn-danger p-3">Excluir</button>
                                 </form>
                             </div>

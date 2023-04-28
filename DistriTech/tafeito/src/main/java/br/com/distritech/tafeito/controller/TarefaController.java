@@ -1,5 +1,6 @@
 package br.com.distritech.tafeito.controller;
 
+import br.com.distritech.tafeito.dto.RequisicaoEditarTarefa;
 import br.com.distritech.tafeito.dto.RequisicaoNovaTarefa;
 import br.com.distritech.tafeito.model.Tarefa;
 import br.com.distritech.tafeito.repository.TarefaRepository;
@@ -36,6 +37,21 @@ public class TarefaController {
     public String excluir(@PathVariable("id") Long id){
         Tarefa tarefa = tarefaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido: " + id));
         tarefaRepository.delete(tarefa);
+        return "redirect:/home";
+    }
+
+    @GetMapping("formularioEditar/{id}")
+    public String editarTarefa(@PathVariable("id") Long id, @Valid RequisicaoEditarTarefa requisicao, BindingResult result){
+        Tarefa tarefa = tarefaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido: " + id));
+
+        if(result.hasErrors()){
+            return "tarefa/formularioEditar/{id}";
+        }
+
+        tarefa.setNomeTarefa(requisicao.getNomeTarefa());
+        tarefa.setDescricaoTarefa(requisicao.getDescricaoTarefa());
+        tarefa.setDataConclusaoTarefa(requisicao.getDataConclusaoTarefa());
+        tarefaRepository.save(tarefa);
         return "redirect:/home";
     }
 }
