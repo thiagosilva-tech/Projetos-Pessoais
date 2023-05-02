@@ -7,6 +7,7 @@ import br.com.distritech.tafeito.repository.TarefaRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,18 +41,26 @@ public class TarefaController {
         return "redirect:/home";
     }
 
-    @GetMapping("formularioEditar/{id}")
-    public String editarTarefa(@PathVariable("id") Long id, @Valid RequisicaoEditarTarefa requisicao, BindingResult result){
+    @GetMapping("editar/{id}")
+    public String editarTarefa(@PathVariable("id") Long id, Model model){
         Tarefa tarefa = tarefaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido: " + id));
+        model.addAttribute("tarefa", tarefa);
+        return "tarefa/formularioEdicao";
+    }
 
-        if(result.hasErrors()){
-            return "tarefa/formularioEditar/{id}";
+    @PostMapping("editar")
+    public String editarTarefa(@ModelAttribute("tarefa") Tarefa tarefa, BindingResult result){
+        if (result.hasErrors()){
+            return "/tarefa/formularioEdicao";
         }
+        Tarefa tarefaExistente = tarefaRepository.findById(tarefa.getId()).orElseThrow(() -> new IllegalArgumentException("ID inválido:" + tarefa.getId()));
+        tarefaExistente.setId(tarefa.getId());
+        tarefaExistente.setNomeTarefa(tarefa.getNomeTarefa());
+        tarefaExistente.setDescricaoTarefa(tarefa.getDescricaoTarefa());
+        tarefaExistente.setDataConclusaoTarefa(tarefa.getDataConclusaoTarefa());
 
-        tarefa.setNomeTarefa(requisicao.getNomeTarefa());
-        tarefa.setDescricaoTarefa(requisicao.getDescricaoTarefa());
-        tarefa.setDataConclusaoTarefa(requisicao.getDataConclusaoTarefa());
-        tarefaRepository.save(tarefa);
+        System.out.println(tarefaExistente);
+        tarefaRepository.save(tarefaExistente);
         return "redirect:/home";
     }
 }

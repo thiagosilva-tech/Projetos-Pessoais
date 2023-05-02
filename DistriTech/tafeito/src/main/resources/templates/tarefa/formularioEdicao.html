@@ -1,3 +1,4 @@
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{base :: head}">
         <title>Editar Tarefa</title>
 </head>
@@ -8,14 +9,17 @@
             <div th:replace="~{base :: titulo('Editar Tarefa')}"></div>
 
             <div class="card">
-                <form th:object="${requisicaoEditarTarefa}" class="card-body" action="@{tarefa/formularioEdicao/{id}(id=${tarefa.id})}" method="POST">
+                <form th:object="${tarefa}" class="card-body" th:action="@{/tarefa/editar}" method="POST">
+                    <input type="hidden" th:field="*{id}" />
                     <div class="mb-3">
+
                         <label class="form-label" for="nomeTarefa">Tarefa</label>
                         <input th:field="*{nomeTarefa}" th:errorclass="is-invalid" class="form-control" type="text" placeholder="nome da tarefa"/>
                         <small>Informe o nome da tarefa.</small>
                         <div class="invalid-feedback" th:if="${#fields.hasErrors('nomeTarefa')}" th:errors="*{nomeTarefa}" >
                             Erros do nome da tarefa
                         </div>
+
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="dataConclusaoTarefa">Data para conclusão</label>
@@ -27,13 +31,13 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="descricaoTarefa">Descrição</label>
-                        <textarea th:field="*{descricaoTarefa}" th:errorclass="is-invalid" class="form-control" placeholder="descrição da tarefa"></textarea>
+                        <textarea th:field="*{descricaoTarefa}" th:errorclass="is-invalid" class="form-control" placeholder=" descrição da tarefa"></textarea>
                         <small>Informe uma descrição da tarefa.</small>
                         <div class="invalid-feedback" th:if="${#fields.hasErrors('descricaoTarefa')}" th:errors="*{descricaoTarefa}">
                             Erros da descrição da tarefa
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Alterar</button>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
                 </form>
             </div>
         </div>

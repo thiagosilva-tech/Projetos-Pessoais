@@ -28,9 +28,7 @@
                             </th:block>
 
                             <div class="col">
-                                <form th:action="@{tarefa/formularioEdicao/{id}(id=${tarefa.id})}" th:method="get">
-                                    <button type="submit" class="btn btn-primary p-3">Editar</button>
-                                </form>
+                                    <a th:href="@{/tarefa/editar/{id}(id=${tarefa.id})}"><button class="btn btn-primary p-3">Editar</button></a>
                             </div>
                             <div class="col">
                                 <form th:action="@{tarefa/excluir/{id}(id=${tarefa.id})}" th:method="delete">

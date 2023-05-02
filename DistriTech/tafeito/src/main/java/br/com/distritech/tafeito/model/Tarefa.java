@@ -73,4 +73,8 @@ public class Tarefa{
     public void setProjeto(Projeto projeto){
         this.projeto = projeto;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
