@@ -14,6 +14,10 @@ public class Projeto {
 
     private String nomeProjeto;
 
+    public Long getId() {
+		return id;
+	}
+    
     public String getNomeProjeto() {
         return nomeProjeto;
     }

@@ -1,0 +1,41 @@
+<head th:replace="~{base :: head}">
+        <title>Nova Tarefa</title>
+</head>
+    <body>
+        <div th:replace="~{base :: logo}"></div>
+
+        <div class="container">
+            <div th:replace="~{base :: titulo('Nova Tarefa')}"></div>
+
+            <div class="card">
+                <form th:object="${requisicaoNovaTarefa}" class="card-body" action="/tarefa/editar" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label" for="nomeTarefa">Tarefa</label>
+                        <input th:field="*{nomeTarefa}" th:errorclass="is-invalid" class="form-control" type="text" placeholder="nome da tarefa"/>
+                        <small>Informe o nome da tarefa.</small>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('nomeTarefa')}" th:errors="*{nomeTarefa}" >
+                            Erros do nome da tarefa
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="dataConclusaoTarefa">Data para conclusão</label>
+                        <input th:field="*{dataConclusaoTarefa}" th:errorclass="is-invalid" class="form-control" type="date"/>
+                        <small>Informe a data para conclusão da tarefa.</small>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('dataConclusaoTarefa')}" th:errors="*{dataConclusaoTarefa}">
+                            Erros da data de conclução da tarefa
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="descricaoTarefa">Descrição</label>
+                        <textarea th:field="*{descricaoTarefa}" th:errorclass="is-invalid" class="form-control" placeholder=" descrição da tarefa"></textarea>
+                        <small>Informe uma descrição da tarefa.</small>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('descricaoTarefa')}" th:errors="*{descricaoTarefa}">
+                            Erros da descrição da tarefa
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

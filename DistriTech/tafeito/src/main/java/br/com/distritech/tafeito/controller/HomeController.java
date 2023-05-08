@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -29,5 +30,14 @@ public class HomeController {
         List<Projeto> projetos = projetoRepository.findAll();
         model.addAttribute("projetos", projetos);
         return "home";
+    }
+    
+    @GetMapping("/projeto/{id}")
+    public String tarefaPorProjeto(@PathVariable("id") Long id, Model model) {
+    	List<Tarefa> tarefas = tarefaRepository.findByProjetoId(id);
+    	model.addAttribute("tarefas", tarefas);
+    	List<Projeto> projetos = projetoRepository.findAll();
+        model.addAttribute("projetos", projetos);
+    	return "home";
     }
 }
