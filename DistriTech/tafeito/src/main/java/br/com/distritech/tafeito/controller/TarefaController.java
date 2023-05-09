@@ -1,15 +1,20 @@
 package br.com.distritech.tafeito.controller;
 
-import br.com.distritech.tafeito.dto.RequisicaoEditarTarefa;
-import br.com.distritech.tafeito.dto.RequisicaoNovaTarefa;
-import br.com.distritech.tafeito.model.Tarefa;
-import br.com.distritech.tafeito.repository.TarefaRepository;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import br.com.distritech.tafeito.dto.RequisicaoNovaTarefa;
+import br.com.distritech.tafeito.model.Tarefa;
+import br.com.distritech.tafeito.repository.TarefaRepository;
 
 @Controller
 @RequestMapping("tarefa")
@@ -25,7 +30,7 @@ public class TarefaController {
     }
 
     @PostMapping("novo")
-    public String novo(@Valid RequisicaoNovaTarefa requisicao, BindingResult result){
+    public String novo(@Validated RequisicaoNovaTarefa requisicao, BindingResult result){
         if(result.hasErrors()){
             return "tarefa/formulario";
         }
