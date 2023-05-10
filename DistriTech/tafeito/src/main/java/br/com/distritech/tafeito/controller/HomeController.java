@@ -1,5 +1,6 @@
 package br.com.distritech.tafeito.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,19 +26,19 @@ public class HomeController {
     private ProjetoRepository projetoRepository;
 
     @GetMapping
-    public String home(Model model){
+    public String home(Model model, Principal principal){
         List<Tarefa> tarefas = tarefaRepository.findAll();
         model.addAttribute("tarefas", tarefas);
-        List<Projeto> projetos = projetoRepository.findAll();
+        List<Projeto> projetos = projetoRepository.findAllByUsuario(principal.getName());
         model.addAttribute("projetos", projetos);
         return "home";
     }
     
     @GetMapping("/projeto/{id}")
-    public String tarefaPorProjeto(@PathVariable("id") Long id, Model model) {
+    public String tarefaPorProjeto(@PathVariable("id") Long id, Model model, Principal principal) {
     	List<Tarefa> tarefas = tarefaRepository.findByProjetoId(id);
     	model.addAttribute("tarefas", tarefas);
-    	List<Projeto> projetos = projetoRepository.findAll();
+    	List<Projeto> projetos = projetoRepository.findAllByUsuario(principal.getName());
         model.addAttribute("projetos", projetos);
     	return "home";
     }

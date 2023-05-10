@@ -8,7 +8,7 @@
             <div th:replace="~{base :: titulo('Novo Projeto')}"></div>
 
             <div class="card">
-                <form th:object="${requisicaoNovoProjeto}" class="card-body" action="/projeto/novo" method="POST">
+                <form th:object="${requisicaoNovoProjeto}" class="card-body" th:action="@{/projeto/novo}" method="POST">
                     <div class="mb-3">
                         <label class="form-label" for="nomeProjeto">Projeto</label>
                         <input th:field="*{nomeProjeto}" th:errorclass="is-invalid" class="form-control" type="text" placeholder="nome do projeto"/>
